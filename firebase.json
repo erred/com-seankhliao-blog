@@ -1,7 +1,7 @@
 {
   "hosting": {
     "target": "blog",
-    "public": "public",
+    "public": "dist",
     "cleanUrls": true,
     "trailingSlash": false,
     "headers": [
