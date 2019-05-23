@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "com-seankhliao"
+  },
+  "targets": {
+    "com-seankhliao": {
+      "hosting": {
+        "blog": [
+          "com-seankhliao-blog"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "hosting": {
+    "target": "blog",
+    "public": "public",
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "headers": [
+      {
+        "source": "**/*.@(ttf|woff|css)",
+        "headers": [{ "key": "Cache-Control", "value": "max-age=31536000" }]
+      },
+      {
+        "source": "**/*.@(webp|png|html)",
+        "headers": [{ "key": "Cache-Control", "value": "max-age=2592000" }]
+      }
+    ]
+  }
+}
