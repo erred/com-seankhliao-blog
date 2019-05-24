@@ -43,7 +43,7 @@ func NewIndex(dir string) *Index {
 	t = template.Must(t.New("post").Parse(PostTemplate))
 	t = template.Must(t.New("index").Parse(IndexTemplate))
 
-	t.templates = t
+	i.templates = t
 
 	go w.walk(dir)
 	for p := range w.p {
