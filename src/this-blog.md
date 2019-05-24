@@ -43,3 +43,4 @@ Getting it to respect subdirectory contexts is still confusing
 - add favicon
 - add manifest?
 - add serviceworker?
+- purge caches

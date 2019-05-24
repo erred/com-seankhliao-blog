@@ -4,8 +4,12 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"path"
 	"path/filepath"
+	"sort"
 	"strings"
+	"sync"
+	"text/template"
 
 	"github.com/russross/blackfriday/v2"
 )
@@ -13,19 +17,79 @@ import (
 func main() {
 	idx := NewIndex("src")
 	idx.Write("dst")
-
-	// d, err := os.Create("dst/base.css")
-	// if err != nil {
-	// 	log.Fatalf("error creating dst/base.css: %v\n", err)
-	// }
-	// defer d.Close()
-	// s, err := os.Open("base.css")
-	// if err != nil {
-	// 	log.Fatalf("error opening base.css: %v\n", err)
-	// }
-	// defer s.Close()
-	// io.Copy(d, s)
 }
+
+type Post struct {
+	Title       string
+	URL         string
+	Description string
+	Date        string
+	Content     string
+}
+
+type Index struct {
+	Posts     []Post
+	wg        sync.WaitGroup
+	templates *template.Template
+}
+
+func NewIndex(dir string) *Index {
+
+	w := NewWalker()
+	i := &Index{}
+
+	t := template.Must(template.New("head").Parse(HeadTemplate))
+	t = template.Must(t.New("foot").Parse(FootTemplate))
+	t = template.Must(t.New("post").Parse(PostTemplate))
+	t = template.Must(t.New("index").Parse(IndexTemplate))
+
+	t.templates = t
+
+	go w.walk(dir)
+	for p := range w.p {
+		i.Posts = append(i.Posts, p)
+	}
+	sort.Sort(i)
+	return i
+}
+
+func (i *Index) Write(dir string) error {
+	if err := os.MkdirAll("dst", 0744); err != nil {
+		log.Printf("error creating dir %v: %v\n", "dst", err)
+		return err
+	}
+
+	i.wg.Add(1)
+	go i.writeFile("index", path.Join(dir, "index.html"), i)
+
+	for _, p := range i.Posts {
+		i.wg.Add(1)
+		go i.writeFile("post", path.Join(dir, p.URL+".html"), p)
+	}
+
+	i.wg.Wait()
+	return nil
+}
+
+func (i *Index) writeFile(tmp, fn string, data interface{}) error {
+	f, err := os.Create(fn)
+	if err != nil {
+		log.Printf("error creating file %v: %v\n", fn, err)
+		return err
+	}
+	defer f.Close()
+	if err := i.templates.ExecuteTemplate(f, tmp, data); err != nil {
+		log.Printf("error executing template %v for %v: %v\n", tmp, fn, err)
+		return err
+	}
+	i.wg.Done()
+	return nil
+}
+
+// newer first
+func (idx *Index) Less(i, j int) bool { return idx.Posts[i].Date > idx.Posts[j].Date }
+func (idx *Index) Len() int           { return len(idx.Posts) }
+func (idx *Index) Swap(i, j int)      { idx.Posts[i], idx.Posts[j] = idx.Posts[j], idx.Posts[i] }
 
 type Walker struct {
 	p      chan Post
