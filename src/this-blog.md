@@ -20,7 +20,6 @@ Written in markdown (mostly).
 Pushed commits trigger CI/CD on [Google Cloud Build](https://cloud.google.com/cloud-build/).
 Runs custom site generator ([parse markdown](https://github.com/russross/blackfriday), create html).
 Pushes results into [Firebase Hosting](https://firebase.google.com/products/hosting/).
-Extra steps to purge Cloudflare cache.
 
 ### Front End
 
@@ -43,3 +42,4 @@ Getting it to respect subdirectory contexts is still confusing
 - add favicon
 - add manifest?
 - add serviceworker?
+- cache purges?
