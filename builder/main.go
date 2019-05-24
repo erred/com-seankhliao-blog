@@ -1,7 +1,6 @@
 package main
 
 import (
-	"io"
 	"io/ioutil"
 	"log"
 	"os"
@@ -15,17 +14,17 @@ func main() {
 	idx := NewIndex("src")
 	idx.Write("dst")
 
-	d, err := os.Create("dst/base.css")
-	if err != nil {
-		log.Fatalf("error creating dst/base.css: %v\n", err)
-	}
-	defer d.Close()
-	s, err := os.Open("base.css")
-	if err != nil {
-		log.Fatalf("error opening base.css: %v\n", err)
-	}
-	defer s.Close()
-	io.Copy(d, s)
+	// d, err := os.Create("dst/base.css")
+	// if err != nil {
+	// 	log.Fatalf("error creating dst/base.css: %v\n", err)
+	// }
+	// defer d.Close()
+	// s, err := os.Open("base.css")
+	// if err != nil {
+	// 	log.Fatalf("error opening base.css: %v\n", err)
+	// }
+	// defer s.Close()
+	// io.Copy(d, s)
 }
 
 type Walker struct {
