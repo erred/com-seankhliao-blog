@@ -1,4 +1,5 @@
 steps:
+  - name: "gcr.io/$PROJECT_ID/com-seankhliao-blog-builder"
   - name: "gcr.io/$PROJECT_ID/firebase"
     args:
       - "deploy"
