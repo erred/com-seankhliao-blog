@@ -15,9 +15,9 @@ const HeadTemplate = `
 <link rel="apple-touch-icon" href="./icon-512.png" />
 <link rel="shortcut icon" href="./favicon.ico" />
 
-<title>{{ if .Title }}{{ .Title }} |{{ end }}blog | seankhliao</title>
+<title>{{ with .Title }}{{ . }} |{{ end }}blog | seankhliao</title>
 
-<link rel="canonical" href="https://blog.seankhliao.com{{ if .URL }}/{{ .URL }}{{ end }}">
+<link rel="canonical" href="https://blog.seankhliao.com{{ with .URL }}/{{ . }}{{ end }}">
 <meta name="description" content="{{ .Description }}">
 `
 const FootTemplate = `
