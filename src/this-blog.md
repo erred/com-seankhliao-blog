@@ -21,7 +21,6 @@ Pushed commits trigger CI/CD on [Google Cloud Build](https://cloud.google.com/cl
 Runs custom site generator ([parse markdown](https://github.com/russross/blackfriday), create html).
 Pushes results into [Firebase Hosting](https://firebase.google.com/products/hosting/).
 Extra steps to purge Cloudflare cache.
-<span>TODO: trigger [Wayback Machine](web.archive.org) archive and [Google Search Console](https://search.google.com/search-console/about) indexing</span>
 
 ### Front End
 
@@ -32,3 +31,12 @@ Mostly reused the stylesheet from my [main](https://seankhliao.com) site.
 
 [kaniko](https://github.com/GoogleContainerTools/kaniko) is used to build containers.
 Getting it to respect subdirectory contexts is still confusing
+[Google Analytics](https://analytics.google.com/analytics/web/) is on every page (hopefully).
+
+### TODO
+
+- make analytics more useful
+- trigger [Wayback Machine](web.archive.org) archive
+- trigger [Google Search Console](https://search.google.com/search-console/about) indexing
+- figure out pipeline for images
+- integrate with main site
