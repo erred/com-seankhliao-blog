@@ -40,3 +40,6 @@ Getting it to respect subdirectory contexts is still confusing
 - trigger [Google Search Console](https://search.google.com/search-console/about) indexing
 - figure out pipeline for images
 - integrate with main site
+- add favicon
+- add manifest?
+- add serviceworker?
