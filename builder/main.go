@@ -33,7 +33,7 @@ type Index struct {
 	templates *template.Template
 
 	// dummy for template
-	Index       string
+	Title       string
 	Description string
 	URL         string
 }
@@ -41,7 +41,9 @@ type Index struct {
 func NewIndex(dir string) *Index {
 
 	w := NewWalker()
-	i := &Index{}
+	i := &Index{
+		Description: "blog of seankhliao",
+	}
 
 	t := template.Must(template.New("head").Parse(HeadTemplate))
 	t = template.Must(t.New("foot").Parse(FootTemplate))
