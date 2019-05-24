@@ -37,7 +37,7 @@ const PostTemplate = `
     <h1>{{ .Title }}</h1>
     <p>
       <a href="https://seankhliao.com">seankhliao</a> / <a href="https://blog.seankhliao.com">blog</a> /
-      <span>{{ .Date }}</span>
+      <time datetime="{{ .Date }}">{{ .Date }}</time>
     </p>
   </hgroup>
 
@@ -126,7 +126,7 @@ const IndexTemplate = `
   
   <ul>
     {{ range .Posts }}
-        <li><span>{{ .Date }}</span> | <a href="./{{ .URL }}">{{ .Title }}</a></li>
+        <li><time datetime="{{ .Date }}">{{ .Date }}</time> | <a href="./{{ .URL }}">{{ .Title }}</a></li>
     {{ end }}
   </ul>
 </html>

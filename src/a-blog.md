@@ -1,5 +1,5 @@
 title = a blog
-date = 2019-05-24
+date = 2019-05-23
 desc = a blog must start somewhere
 
 ---
