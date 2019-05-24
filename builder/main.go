@@ -31,6 +31,11 @@ type Index struct {
 	Posts     []Post
 	wg        sync.WaitGroup
 	templates *template.Template
+
+	// dummy for template
+	Index       string
+	Description string
+	URL         string
 }
 
 func NewIndex(dir string) *Index {
