@@ -1,21 +1,6 @@
 steps:
-  # build tools in parallel
-  - name: "gcr.io/kaniko-project/executor:latest"
-    waitFor: ["-"]
-    dir: "builder"
-    args:
-      - --destination=gcr.io/$PROJECT_ID/com-seankhliao-blog-builder:latest
-      - --cache=true
-      - --cache-ttl=96h
-  - name: "gcr.io/kaniko-project/executor:latest"
-    waitFor: ["-"]
-    dir: "firebase"
-    args:
-      - --destination=gcr.io/$PROJECT_ID/firebase:latest
-      - --cache=true
-      - --cache-ttl=96h
   # call tools
-  - name: "gcr.io/$PROJECT_ID/com-seankhliao-blog-builder:latest"
+  - name: "gcr.io/$PROJECT_ID/blog-builder:latest"
   - name: "gcr.io/$PROJECT_ID/firebase:latest"
     args:
       - "deploy"
