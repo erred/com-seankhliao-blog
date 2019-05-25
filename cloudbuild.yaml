@@ -4,14 +4,14 @@ steps:
     args:
       - --destination=gcr.io/$PROJECT_ID/com-seankhliao-blog-builder:latest
       - --cache=true
-      - --cache-ttl=6h
+      - --cache-ttl=96h
   - name: "gcr.io/$PROJECT_ID/com-seankhliao-blog-builder:latest"
   - name: "gcr.io/kaniko-project/executor:latest"
     dir: "firebase"
     args:
       - --destination=gcr.io/$PROJECT_ID/firebase:latest
       - --cache=true
-      - --cache-ttl=6h
+      - --cache-ttl=96h
   - name: "gcr.io/$PROJECT_ID/firebase:latest"
     args:
       - "deploy"
