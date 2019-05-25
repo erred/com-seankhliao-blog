@@ -13,7 +13,8 @@
 body {
   background: #000;
   display: grid;
-  grid: auto-flow / 1fr 40em 1fr;
+  grid: auto-flow / 1fr minmax(16em, 40em) 1fr;
+  grid-gap: 1rem;
   margin: 0 0 10vh 0;
 }
 mark {
@@ -49,6 +50,17 @@ ul > li:before {
   content: "»";
   margin: 0 1ch 0 -3ch;
   position: absolute;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 1.5em 0 0.25em 0;
+}
+p {
+  margin: 0.25;
 }
 
 /* layout */
